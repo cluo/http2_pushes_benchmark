@@ -1,4 +1,4 @@
-# http2_vs_http1
+# http2_pushes_benchmark
 Comparison of http2 vs http1 in golang
 Just a little server with 2 endpoints to benchmark the difference between regular requests and HTTP/2 PUSH'es.
 
