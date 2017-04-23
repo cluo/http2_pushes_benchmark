@@ -11,7 +11,7 @@ const jsFilesNumber = 1000
 func generateResources() {
 	err := os.Mkdir("res", 0777)
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
 	}
 	html := "<html>\n	<head>\n"
 
@@ -21,11 +21,11 @@ func generateResources() {
 		os.Remove("res/" + filename)
 		f, err := os.Create("res/" + filename)
 		if err != nil {
-			panic(err)
-			return
+			fmt.Println(err)
+			continue
 		}
-		f.Write([]byte(fmt.Sprintf("var a;")))
 		f.Close()
+		f.Write([]byte(fmt.Sprintf("var a;")))
 		html += fmt.Sprintf("		<script src='res/%s' ></script>\n", filename)
 	}
 	html += `	</head>
@@ -41,7 +41,8 @@ func generateResources() {
 	os.Remove("res/index.html")
 	f, err := os.Create("res/index.html")
 	if err != nil {
-		panic(err)
+		fmt.Println(err)
+		return
 	}
 	f.Write([]byte(html))
 	f.Close()
